@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.julong</groupId>
+  <artifactId>alibaba-dubbo-learn-examples</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <modules>
+  	<!-- 无协议  -->
+    <module>alibaba-dubbo-learn-xml-server-example</module>
+    <module>alibaba-dubbo-learn-xml-client-example</module>
+    <!-- multicast 广播协议 -->
+    <module>alibaba-dubbo-learn-multicast-xml-server-example</module>
+    <module>alibaba-dubbo-learn-multicast-xml-client-example</module>
+    <!-- zookeeper 注册中心 -->
+    <module>alibaba-dubbo-learn-zookeeper-xml-server-example</module>
+    <module>alibaba-dubbo-learn-zookeeper-xml-client-example</module>
+    <!-- redis 注册中心 -->
+    <module>alibaba-dubbo-learn-redis-xml-server-example</module>
+    <module>alibaba-dubbo-learn-redis-xml-client-example</module>
+    <!-- Nacos  注册中心 -->
+    <module>alibaba-dubbo-learn-nacos-xml-server-example</module>
+    <module>alibaba-dubbo-learn-nacos-xml-client-example</module>
+  
+    
+  </modules>
+</project>

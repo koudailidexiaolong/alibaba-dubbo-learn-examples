@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans        
+    http://www.springframework.org/schema/beans/spring-beans-4.3.xsd        
+    http://dubbo.apache.org/schema/dubbo        
+    http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
+ 
+
+ 
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <dubbo:application name="alibaba-dubbo-learn-zookeper-xml-client-example" owner="julong" />
+ 
+    <!-- 使用multicast广播注册中心暴露发现服务地址 multicast://224.5.6.7:1234 zookeeper://192.168.10.222:12181 -->
+    <dubbo:registry address="zookeeper://192.168.10.222:12181"  client="zkclient"/>
+    
+ 	 <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20880" />
+ 
+    <!-- 
+           生成远程服务代理，可以和本地bean一样使用demoService  无注册中心的方法 使用url 配置
+            生成远程服务代理，dubbo:reference 可以和本地bean一样使用helloService 
+   	check="false" 忽略检查   服务提供者不存在 则不报错
+   	check="true" 检查  服务提供者 如果不存在则报错
+   	timeout 服务方法调用超时时间(毫秒)
+    retries	远程服务调用重试次数，不包括第一次调用，不需要重试请设为0   新增不要设置 重试次数
+    version 服务版本，与服务提供者的版本一致   *代表 随机
+    -->
+    <dubbo:reference id="helloService" interface="com.julong.dubbo.service.HelloService"  />
+</beans>
