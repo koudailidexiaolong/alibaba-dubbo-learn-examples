@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+
+	<context:annotation-config />
+	<!-- 使声明式事务生效 拦截在 注解 serivce 关键字 -->
+	<context:component-scan base-package="com.julongtech"></context:component-scan>
+	<context:component-scan base-package="com.julongtech">
+	  	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>   
+	</context:component-scan>
+	<!-- 检查是否为静态资源
+	<mvc:default-servlet-handler/>
+	<mvc:resources location="/easyui/" mapping="/easyui/**"/>
+	<mvc:resources location="/utils/" mapping="/utils/**"/>
+	<mvc:resources location="/images/" mapping="/images/**"/> -->
+	
+	<!-- 视图模式 -->
+	<bean id="viewResolver"	class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="order" value="100"></property>
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+		<property name="contentType" value="text/html; charset=utf-8"/>
+	</bean>
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="8"></property>
+	</bean>
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="order" value="0"></property>
+        <property name="contentNegotiationManager">
+            <bean class="org.springframework.web.accept.ContentNegotiationManager">
+                <constructor-arg>
+                    <bean class="org.springframework.web.accept.PathExtensionContentNegotiationStrategy">
+                        <constructor-arg >
+                            <map>
+                                <entry key="json" >
+                                    <util:constant static-field="org.springframework.http.MediaType.APPLICATION_JSON_VALUE" />
+                                </entry>
+                            </map>
+                        </constructor-arg>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </property>
+        <property name="defaultViews">
+            <list>
+               <!-- default views -->
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+            </list>
+        </property>
+    </bean>
+
+	<!-- 避免IE出现下载JSON文件的情况 -->    
+    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">    
+           <property name="supportedMediaTypes">    
+               <list>                          
+                  <value>text/html;charset=UTF-8</value>
+               </list>    
+           </property>   
+    </bean>
+	<!-- 文件上传 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- one of the properties available; the maximum file size in bytes -->
+		<!-- 最大上传文件大小  10MB-->
+		<property name="maxUploadSize" value="10737418240" />
+		<!-- 内存加载大小 10KB-->
+		<property name="maxInMemorySize" value="10485760"></property>
+		<!-- 文件编码格式 utf-8 -->
+		<property name="defaultEncoding" value="utf-8"></property>
+	</bean>
+</beans>

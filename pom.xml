@@ -32,7 +32,10 @@
     <!-- Nacos  注册中心 -->
     <module>alibaba-dubbo-learn-nacos-xml-server-example</module>
     <module>alibaba-dubbo-learn-nacos-xml-client-example</module>
-  
+    <!-- 测试项目 -->
+    <module>alibaba-dubbo-learn-project-01-example</module>
     
+    <!-- 注解模式 -->
+    <module>alibaba-dubbo-learn-annotation-example</module>
   </modules>
 </project>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:dubbo="http://dubbo.apache.org/schema/dubbo"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans        
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd        
+    http://dubbo.apache.org/schema/dubbo        
+    http://dubbo.apache.org/schema/dubbo/dubbo.xsd" >
+ 
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="alibaba-dubbo-learn-user-client-consumer" owner="julong" >
+    		 <!-- 同一服务器上 需要设置 如下配置  消费者同样需要声明unicast=false，否则消费者无法收到消息，导致No provider available for the service异常：-->
+    	<dubbo:parameter key="qos.enable" value="true" />
+		<dubbo:parameter key="qos.accept.foreign.ip" value="false" />
+		<dubbo:parameter key="qos.port" value="33333" />
+		<dubbo:parameter key="unicast" value="false" />
+    </dubbo:application>
+ 
+    <!-- 使用multicast广播注册中心暴露服务地址  N/A 代表不需要注册中心     multicast://224.5.6.7:1234 zookeeper://192.168.10.222:12181-->
+    <dubbo:registry protocol="zookeeper" address="192.168.10.222:12181" client="zkclient" ></dubbo:registry>
+    <!-- 集群配置：
+    	address="10.20.153.10:2181,10.20.153.11:2181,10.20.153.12:2181"
+    	address="zookeeper://10.20.153.10:2181?backup=10.20.153.11:2181,10.20.153.12:2181"
+         -->
+ 	
+    <!-- 用dubbo协议在20880端口暴露服务 -->
+    <dubbo:protocol name="dubbo" port="20880" ></dubbo:protocol>
+ 
+    <!-- 声明需要暴露的服务接口 -->
+    <dubbo:reference interface="com.julongtech.user.service.UserService" id="userService" version="1.0.0" ></dubbo:reference>
+   
+</beans>
