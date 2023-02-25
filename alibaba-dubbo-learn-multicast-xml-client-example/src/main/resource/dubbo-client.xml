@@ -7,8 +7,6 @@
     http://dubbo.apache.org/schema/dubbo        
     http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
  
-
- 
     <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
     <dubbo:application name="alibaba-dubbo-learn-multicast-xml-client-example" owner="julong" >
    		 <!-- 同一服务器上 需要设置 如下配置  消费者同样需要声明unicast=false，否则消费者无法收到消息，导致No provider available for the service异常：-->

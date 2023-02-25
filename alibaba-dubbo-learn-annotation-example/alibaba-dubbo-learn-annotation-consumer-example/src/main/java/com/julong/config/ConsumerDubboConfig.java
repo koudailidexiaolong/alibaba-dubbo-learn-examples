@@ -38,7 +38,7 @@ public class ConsumerDubboConfig {
 	public RegistryConfig registryConfig(){
 		RegistryConfig registryConfig = new RegistryConfig();
 		registryConfig.setProtocol("zookeeper");//注册中心名称
-		registryConfig.setAddress("192.168.10.132:2181");
+		registryConfig.setAddress("192.168.10.222:2181");
 		registryConfig.setCheck(false);
 		return registryConfig;
 	}

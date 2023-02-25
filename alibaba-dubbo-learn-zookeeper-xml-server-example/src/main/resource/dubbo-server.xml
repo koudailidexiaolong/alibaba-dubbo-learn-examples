@@ -11,7 +11,7 @@
     <dubbo:application name="alibaba-dubbo-learn-zookeeper-xml-server-example" owner="julong" />
  
     <!-- 使用multicast广播注册中心暴露服务地址  N/A 代表不需要注册中心     multicast://224.5.6.7:1234 zookeeper://192.168.10.222:12181-->
-    <dubbo:registry protocol="zookeeper" address="192.168.10.222:12181" client="zkclient" />
+    <dubbo:registry protocol="zookeeper" address="192.168.10.222:2181" client="zkclient" />
     <!-- 集群配置：
     	address="10.20.153.10:2181,10.20.153.11:2181,10.20.153.12:2181"
     	address="zookeeper://10.20.153.10:2181?backup=10.20.153.11:2181,10.20.153.12:2181"

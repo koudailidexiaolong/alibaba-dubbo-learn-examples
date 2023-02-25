@@ -13,7 +13,7 @@
     <dubbo:application name="alibaba-dubbo-learn-zookeper-xml-client-example" owner="julong" />
  
     <!-- 使用multicast广播注册中心暴露发现服务地址 multicast://224.5.6.7:1234 zookeeper://192.168.10.222:12181 -->
-    <dubbo:registry address="zookeeper://192.168.10.222:12181"  client="zkclient"/>
+    <dubbo:registry address="zookeeper://192.168.10.222:2181"  client="zkclient"/>
     
  	 <!-- 用dubbo协议在20880端口暴露服务 -->
     <dubbo:protocol name="dubbo" port="20880" />

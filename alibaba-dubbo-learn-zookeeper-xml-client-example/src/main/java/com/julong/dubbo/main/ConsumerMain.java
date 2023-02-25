@@ -1,5 +1,7 @@
 package com.julong.dubbo.main;
 
+import java.io.IOException;
+
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.julong.dubbo.service.HelloService;
@@ -10,7 +12,7 @@ import com.julong.dubbo.service.HelloService;
  * @date 2021年10月22日 下午9:59:52
  * @desc 
  */
-public class CusumerMain {
+public class ConsumerMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -19,6 +21,13 @@ public class CusumerMain {
 		HelloService helloService = (HelloService)context.getBean("helloService"); // 获取远程服务代理
 		String hello = helloService.sayHello("hello world"); // 执行远程方法
 		System.out.println( hello ); // 显示调用结果
+		try {
+			System.out.println("服务启动");
+			System.in.read();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} // 按任意键退出
 	}
 
 }

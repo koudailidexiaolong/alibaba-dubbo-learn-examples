@@ -37,5 +37,7 @@
     
     <!-- 注解模式 -->
     <module>alibaba-dubbo-learn-annotation-example</module>
+    
+    <module>alibaba-dubbo-spring-boot-example</module>
   </modules>
 </project>

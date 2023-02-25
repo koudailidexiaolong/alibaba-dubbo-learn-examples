@@ -10,7 +10,7 @@ import com.julong.dubbo.service.HelloService;
  * @date 2021年10月22日 下午9:59:52
  * @desc 
  */
-public class CusumerMain {
+public class ConsumerMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

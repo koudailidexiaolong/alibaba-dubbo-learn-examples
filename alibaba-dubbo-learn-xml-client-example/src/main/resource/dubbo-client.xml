@@ -27,5 +27,5 @@
     retries	远程服务调用重试次数，不包括第一次调用，不需要重试请设为0   新增不要设置 重试次数
     version 服务版本，与服务提供者的版本一致   *代表 随机
     -->
-    <dubbo:reference id="helloService" interface="com.julong.dubbo.service.HelloService" url="dubbo://192.168.10.27:20880/com.julong.dubbo.service.HelloService" />
+    <dubbo:reference id="helloService" interface="com.julong.dubbo.service.HelloService" url="dubbo://192.168.10.128:20880/com.julong.dubbo.service.HelloService" />
 </beans>
